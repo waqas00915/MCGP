@@ -1,0 +1,37 @@
+<ion-content>
+<div class="nav-container">
+<ion-button (click)="goBack()" fill="clear"><ion-icon class="back-arrow" name="arrow-back"></ion-icon></ion-button>
+<div class="title">
+<h1>Doctor's Profile</h1>
+</div>
+</div>
+<div class="profile-photo">
+  <img src="assets/home/3.jpg">
+</div>
+<div class="doctor-info">
+  <div class="name-fav">
+    <h2>Dr. Khurram</h2>
+    <div class="fav-icon"><ion-icon name="heart"></ion-icon></div>
+  </div>
+  <h3 style="margin-left: 40px;">Cardiologist</h3>
+  <div class="star-box">
+    <a><ion-icon name="star"></ion-icon></a>
+    <a><ion-icon name="star"></ion-icon></a>
+    <a><ion-icon name="star"></ion-icon></a>
+    <a><ion-icon name="star"></ion-icon></a>
+    <a><ion-icon name="star"></ion-icon></a>
+  </div>
+  <h4>+12 year Experience</h4>
+</div>
+<div class="segment-container" padding>
+<ion-segment (ionChange)="segmentChanged($event)">
+  <ion-segment-button checked value="seg1">
+    <h3>About</h3>
+  </ion-segment-button>
+  <ion-segment-button value="seg2">
+    <h3>Schedule</h3>
+  </ion-segment-button>
+  </ion-segment>
+  </div>
+
+</ion-content>
