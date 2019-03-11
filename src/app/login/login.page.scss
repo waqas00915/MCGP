@@ -1,0 +1,63 @@
+ion-content{
+    --background:  url('../../assets/bgs/bg3.jpg') no-repeat center center / cover;
+}
+.signup{
+    width: 150px;
+    height: 100px;
+    background-color: white;
+    border-radius: 50%;
+    float: right;
+    text-align: center;
+    margin-top: -15%;
+    margin-right: -10%;
+    
+}
+a{
+    text-decoration: none;
+}
+.signupbutton{
+    font-size: 18;
+    margin-top: 65px;
+    text-decoration: none;
+    margin-right: 20px;
+    color: #1b1b9e;
+    font-size: 18px;
+}
+.logo{
+    width: 35vw;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 30%;
+    margin-bottom: 10%;
+}
+.userinput{
+    --background: transparent;
+    color: white;
+    margin: 10%;
+    font-size: -300%;
+    border-bottom: 1px solid white;
+    margin-top: -30px;
+}
+.forgotpassword a{
+float: right;
+text-decoration: none;
+color: white;
+margin-right: 35px;
+margin-top: -20px;
+font-size: 14px;
+}
+.login-button{
+    margin-top: 70px;
+    text-align: center;
+    position: relative;
+}
+.login{
+    padding: 10px;
+    padding-left: 50px;
+    padding-right: 50px;
+    border-radius: 20px;
+    background-color: white;
+    color: #1b1b9e;
+    font-size: 18px;
+
+}
