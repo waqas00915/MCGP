@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+<<<<<<< HEAD
 import { ApiService } from '../api.service';
 
 @Component({
@@ -27,4 +28,24 @@ export class LoginPage implements OnInit {
     SignupPage() {
         this.navcontroller.navigateForward('register');
     }
+=======
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.page.html',
+  styleUrls: ['./login.page.scss'],
+})
+export class LoginPage implements OnInit {
+
+  constructor(private navcontroller:NavController) { }
+
+  ngOnInit() {
+  }
+  Home(){
+    this.navcontroller.navigateForward('tabs');
+  }
+  SignupPage(){
+    this.navcontroller.navigateForward("register");
+  }
+>>>>>>> 061291b783420add666220be7ceb0f1dc2141d3a
 }
