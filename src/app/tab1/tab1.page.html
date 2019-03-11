@@ -6,7 +6,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
   <ion-card *ngFor="let number of [1,2,3,4]">
     <ion-grid>
       <ion-row>
@@ -34,7 +34,7 @@
         <ion-button (click)="OpenProfile()" size="small" fill="clear">View Profile</ion-button>
       </div>
       <div style="float: right">
-        <ion-button size="small" fill="clear">Appointment</ion-button>
+        <ion-button (click)="appointment()" size="small" fill="clear">Appointment</ion-button>
       </div>
     </ion-card-content>
   </ion-card>

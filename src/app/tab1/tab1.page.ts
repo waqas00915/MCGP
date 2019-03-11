@@ -12,4 +12,7 @@ export class Tab1Page {
   OpenProfile(){
     this.navecontroller.navigateForward("profile")
   }
+  appointment(){
+    this.navecontroller.navigateForward("book")
+  }
 }
