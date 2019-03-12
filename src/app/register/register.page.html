@@ -1,37 +1,47 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>register</ion-title>
-    <ion-buttons slot="start">
-        <ion-button (click)="BacktoLogin()" fill="clear"><ion-icon name="arrow-back"></ion-icon></ion-button>
-    </ion-buttons>
-  </ion-toolbar>
- 
+    <ion-toolbar>
+        <ion-title>register</ion-title>
+        <ion-buttons slot="start">
+            <ion-button (click)="BacktoLogin()" fill="clear">
+                <ion-icon name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+
 </ion-header>
 <ion-content>
-  <ion-item>
-    <ion-label><ion-icon name="person"></ion-icon></ion-label>
-    <ion-input type="text" placeholder="Username"></ion-input>
-  </ion-item>
-  <ion-item>
-      <ion-label><ion-icon name="person-add"></ion-icon></ion-label>
-      <ion-input type="text" placeholder="Email"></ion-input>
+    <ion-item>
+        <ion-label>
+            <ion-icon name="person"></ion-icon>
+        </ion-label>
+        <ion-input [(ngModel)]=user.name type="text" placeholder="Username"></ion-input>
     </ion-item>
     <ion-item>
-        <ion-label><ion-icon name="call"></ion-icon></ion-label>
-        <ion-input type="text" placeholder="Phone#"></ion-input>
-      </ion-item>
-      <ion-item>
-          <ion-label><ion-icon name="person"></ion-icon></ion-label>
-          <ion-input type="password" placeholder="Password"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-label>Gender</ion-label>
-            <ion-select placeholder="Select One">
-              <ion-select-option value="f">Female</ion-select-option>
-              <ion-select-option value="m">Male</ion-select-option>
-            </ion-select>
-          </ion-item>
-        <div class="login-button">
-            <button class="login">Confirm</button>
-           </div>
+        <ion-label>
+            <ion-icon name="person-add"></ion-icon>
+        </ion-label>
+        <ion-input [(ngModel)]=user.email type="text" placeholder="Email"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label>
+            <ion-icon name="call"></ion-icon>
+        </ion-label>
+        <ion-input [(ngModel)]=user.number type="text" placeholder="Phone#"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label>
+            <ion-icon name="person"></ion-icon>
+        </ion-label>
+        <ion-input [(ngModel)]=user.pass type="password" placeholder="Password"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label>Gender</ion-label>
+        <ion-select [(ngModel)]=user.gender placeholder="Select One">
+            <ion-select-option value="female">Female</ion-select-option>
+            <ion-select-option value="male">Male</ion-select-option>
+        </ion-select>
+    </ion-item>
+    <div class="login-button">
+        <button class="login" (click)="Register()">Register</button>
+    </div>
 </ion-content>

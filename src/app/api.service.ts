@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from 'angularfire2/firestore';
 import { firestore } from 'firebase';
 
 @Injectable({
@@ -18,6 +17,18 @@ export class ApiService {
                 console.log('that', err);
                 reject(err.code);
             });
+        });
+    }
+
+    register(user) {
+        return new Promise((resolve, reject) => {
+            firestore().app.auth().createUserWithEmailAndPassword(user.email, user.pass).then(res => {
+                console.log(res);
+                firestore().collection('doctors').doc(user.email).set(user)
+            }).catch(err => {
+                console.log(err);
+
+            })
         });
     }
 }
