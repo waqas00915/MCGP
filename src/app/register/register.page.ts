@@ -9,7 +9,7 @@ import { Validators } from '@angular/forms';
     styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
-    user: any = { name: '', email: '', pass: '', number: '', gender: '' }
+    user: any = { name: '', email: '', pass: '', number: '', gender: '', img: '' }
     constructor(public navcontroller: NavController, private api: ApiService) { }
 
     ngOnInit() {
