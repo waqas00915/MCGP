@@ -8,10 +8,13 @@ export class ApiService {
 
     constructor() { }
 
-    login(user, pass) {
+    login(user, pass, doctor) {
         return new Promise((resolve, reject) => {
             firestore().app.auth().signInWithEmailAndPassword(user, pass).then(data => {
                 console.log('this', data.user);
+                if (doctor) {
+                    firestore().collection('doctors').doc(user).get()
+                }
                 resolve(data.user);
             }).catch(err => {
                 console.log('that', err);

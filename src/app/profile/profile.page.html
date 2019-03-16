@@ -35,26 +35,38 @@
                 <ion-icon name="star"></ion-icon>
             </a>
         </div>
-        <h4>+12 year Experience</h4>
+        <h4 class="animated pulse infinite">+12 year Experience</h4>
     </div>
     <div class="segment-container" padding>
         <ion-segment (ionChange)="segmentChanged($event)">
-            <ion-segment-button checked value="seg1">
+            <ion-segment-button value="seg1">
                 <h3>About</h3>
             </ion-segment-button>
-            <ion-segment-button value="seg2">
+            <ion-segment-button checked value="seg2">
                 <h3>Schedule</h3>
             </ion-segment-button>
         </ion-segment>
     </div>
 
-    <div [ngSwitch]="section" padding>
-        <div *ngSwitchCase="'seg1'">
-            ABOUT SEGMENT
+    <div [ngSwitch]="section" padding class="segments-container">
+        <div *ngSwitchCase="'seg1'" class="animated fadeIn">
+            <h5>About</h5>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum tenetur recusandae iure cum sequi
+                consectetur corporis quibusdam non. Facere, omnis!</p>
+            <h5>Specialization</h5>
+            <ul padding>
+                <li>Lorem ipsum</li>
+                <li>Lorem ipsum</li>
+                <li>Lorem ipsum</li>
+            </ul>
         </div>
 
-        <div *ngSwitchCase="'seg2'">
-            Schedule SEGMENT
+        <div *ngSwitchCase="'seg2'" class="animated fadeIn">
+            <h5>Date</h5>
+            <h5>Times</h5>
+            <div class="times-container" *ngFor="let time of times">
+                <input type="button" value="{{time}}">
+            </div>
         </div>
     </div>
 

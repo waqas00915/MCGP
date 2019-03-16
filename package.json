@@ -25,6 +25,7 @@
     "@ionic-native/status-bar": "^5.0.0",
     "@ionic/angular": "^4.0.0",
     "angularfire2": "^5.1.1",
+    "animate.css": "^3.7.0",
     "core-js": "^2.5.4",
     "firebase": "^5.8.6",
     "rxjs": "~6.3.3",

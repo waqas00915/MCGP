@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { ApiService } from '../api.service';
+import { Validators } from '@angular/forms';
 
 @Component({
     selector: 'app-register',
