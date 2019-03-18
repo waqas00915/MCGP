@@ -1,0 +1,28 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Doctor</ion-title>
+        <ion-buttons slot="start">
+            <ion-button (click)="BacktoLogin()" fill="clear">
+                <ion-icon name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-item>
+        <ion-label>
+            <ion-icon name="person-add"></ion-icon>
+        </ion-label>
+        <ion-input [(ngModel)]=user.email type="text" placeholder="Email"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label>
+            <ion-icon name="person"></ion-icon>
+        </ion-label>
+        <ion-input [(ngModel)]=user.pass type="password" placeholder="Password"></ion-input>
+    </ion-item>
+    <div class="login-button">
+        <button class="login">Login</button>
+    </div>
+</ion-content>
