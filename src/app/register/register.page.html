@@ -41,6 +41,12 @@
             <ion-select-option value="male">Male</ion-select-option>
         </ion-select>
     </ion-item>
+    <ion-item>
+        <ion-label id="profile_image" color="primary" position="stacked">Profile Image
+        </ion-label>
+        <ion-input type="file" accept="image/*" id="upload" [(ngModel)]="user.img"
+            (ionChange)="imageFilePath_change($event)"></ion-input>
+    </ion-item>
     <div class="login-button">
         <button class="login" (click)="Register()">Register</button>
     </div>
