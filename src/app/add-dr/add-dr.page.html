@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-title>Add Doctor</ion-title>
+      <ion-buttons slot="start">
+          <ion-button (click)="Back()" fill="clear">
+              <ion-icon name="arrow-back"></ion-icon>
+          </ion-button>
+      </ion-buttons>
+  </ion-toolbar>
+
+</ion-header>
+<ion-content>
+  <ion-item>
+      <ion-label>
+          <ion-icon name="person"></ion-icon>
+      </ion-label>
+      <ion-input [(ngModel)]=doctor.name type="text" placeholder="Username"></ion-input>
+  </ion-item>
+  <ion-item>
+      <ion-label>
+          <ion-icon name="person-add"></ion-icon>
+      </ion-label>
+      <ion-input [(ngModel)]=doctor.email type="text" placeholder="Email"></ion-input>
+  </ion-item>
+  <ion-item>
+      <ion-label>
+          <ion-icon name="call"></ion-icon>
+      </ion-label>
+      <ion-input [(ngModel)]=doctor.number type="text" placeholder="Phone#"></ion-input>
+  </ion-item>
+  <ion-item>
+      <ion-label>
+          <ion-icon name="person"></ion-icon>
+      </ion-label>
+      <ion-input [(ngModel)]=doctor.pass type="password" placeholder="Password"></ion-input>
+  </ion-item>
+  <ion-item>
+      <ion-label>Gender</ion-label>
+      <ion-select [(ngModel)]=doctor.gender placeholder="Select One">
+          <ion-select-option value="female">Female</ion-select-option>
+          <ion-select-option value="male">Male</ion-select-option>
+      </ion-select>
+  </ion-item>
+  <ion-item>
+      <ion-label id="profile_image" color="primary" position="stacked">Profile Image
+      </ion-label>
+      <ion-input type="file" accept="image/*" id="upload" [(ngModel)]="doctor.image"
+          (ionChange)="imageFilePath_change($event)"></ion-input>
+  </ion-item>
+  <div class="login-button">
+      <button class="login" (click)="AddNewDoctor()">Add</button>
+  </div>
+</ion-content>

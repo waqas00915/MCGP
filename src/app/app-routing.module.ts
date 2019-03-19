@@ -10,6 +10,11 @@ const routes: Routes = [
     { path: 'profile', loadChildren: './profile/profile.module#ProfilePageModule' },
     { path: 'dr-login', loadChildren: './dr-login/dr-login.module#DrLoginPageModule' },
     { path: 'admin', loadChildren: './admin/admin.module#AdminPageModule' },
+    { path: 'home', loadChildren: './home/home.module#HomePageModule' },
+    { path: 'add-dr', loadChildren: './add-dr/add-dr.module#AddDrPageModule' },
+    { path: 'tab4', loadChildren: './tab4/tab4.module#Tab4PageModule' },
+    { path: 'tab5', loadChildren: './tab5/tab5.module#Tab5PageModule' },
+
 
 ];
 @NgModule({

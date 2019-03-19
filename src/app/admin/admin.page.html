@@ -1,9 +1,42 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>admin</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()" fill="clear"><ion-icon name="arrow-back"></ion-icon></ion-button>
+  </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-
+<ion-content>
+  <h2 class="animated fadeIn delay-1s" text-center>Control Panel</h2>
+<ion-grid class="animated slideInUp">
+  <ion-row>
+    <ion-col>
+      <ion-card (click)="addDrPage()" text-center>
+        <ion-icon name="person-add"></ion-icon>
+        <h4>Add Doctor</h4>
+      </ion-card>
+    </ion-col>
+    <ion-col>
+      <ion-card text-center>
+        <ion-icon name="trash"></ion-icon>
+        <h5>Remove Doctor</h5>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col text-center>
+        <ion-card>
+      <ion-icon name="build"></ion-icon>
+      <h5>Edit Doctor</h5>
+    </ion-card>
+    </ion-col>
+    <ion-col text-center>
+      <ion-card>
+      <ion-icon name="eye"></ion-icon>
+      <h5>View Doctors</h5>
+    </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>
 </ion-content>
