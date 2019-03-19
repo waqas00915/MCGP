@@ -9,5 +9,10 @@ import { NavController } from '@ionic/angular';
 
 export class Tab1Page {
     constructor(private navecontroller: NavController) { }
-   
+   patients: any = [{
+       name: "hassan",
+       date: "8/7/19",
+       time: "08:00Pm",
+       image: "1"
+   }]
 }
