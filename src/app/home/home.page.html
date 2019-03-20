@@ -1,14 +1,22 @@
 <ion-header>
-  <ion-toolbar>
-      <ion-title text-center>
-          Home
-      </ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title text-center>
+            Home
+        </ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  <h2 class="animated fadeIn delay-1s" style="margin: 0" text-center>Our Specialists</h2>
-  <ion-card *ngFor="let doctor of doctors" class="animated slideInUp delay-0.5s">
+    <!-- <h2 class="animated fadeIn delay-1s" style="margin: 0" text-center>Choose your Category</h2> -->
+    <ion-card *ngIf='docs.length > 0'>
+        <ion-item *ngFor='let item of docs'>
+            <ion-avatar item-start>
+                <img [src]="item.img">
+            </ion-avatar>
+            <h2>{{item.name}}</h2>
+        </ion-item>
+    </ion-card>
+    <!-- <ion-card *ngFor="let doctor of doctors" class="animated slideInUp delay-0.5s">
       <ion-grid>
           <ion-row>
               <ion-col size="4">
@@ -48,5 +56,5 @@
               <ion-button (click)="appointment()" size="small" fill="clear">Appointment</ion-button>
           </div>
       </ion-card-content>
-  </ion-card>
+  </ion-card> -->
 </ion-content>
