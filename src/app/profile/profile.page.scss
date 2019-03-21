@@ -6,6 +6,21 @@
 
 }
 
+//MEDIA QUERIES
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait) { 
+    .timediv{
+        font-size: 30px !important;
+    }
+ }
+//MEDIA QUERIES
+
+.timediv{
+    color: #1b1b9e;
+}
+
 :root {
     --gutter: 20px;
 }
@@ -183,4 +198,8 @@ ion-slide {
     background-color: #3880ff45;
     text-align: center;
     border-radius: 5px;
+}
+
+.red div{
+    background-color: #ff383845 !important;
 }

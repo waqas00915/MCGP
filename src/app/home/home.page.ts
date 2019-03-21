@@ -35,16 +35,19 @@ export class HomePage implements OnInit {
     // }];
     constructor(private navecontroller: NavController, private api: ApiService) { }
     ngOnInit(): void {
-        this.api.getAllSpecialists().then(data => {
+        this.api.getAllSpecialities().then(data => {
             this.docs = data;
             console.log(this.docs);
         });
     }
-    OpenProfile() {
-        this.navecontroller.navigateForward('profile');
-    }
-    appointment() {
-        this.navecontroller.navigateForward('book');
+    showDr(name) {
+        this.api.load.create({ message: 'Getting all ' + name + ' Doctors...' }).then(l => {
+            l.present();
+            this.api.getAllSpecialists(name).then(a => {
+                this.navecontroller.navigateForward('dr-list');
+                l.dismiss();
+            });
+        })
     }
 }
 

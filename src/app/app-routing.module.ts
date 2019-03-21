@@ -14,6 +14,7 @@ const routes: Routes = [
     { path: 'add-dr', loadChildren: './add-dr/add-dr.module#AddDrPageModule' },
     { path: 'tab4', loadChildren: './tab4/tab4.module#Tab4PageModule' },
     { path: 'tab5', loadChildren: './tab5/tab5.module#Tab5PageModule' },
+    { path: 'dr-list', loadChildren: './dr-list/dr-list.module#DrListPageModule' },
 
 
 ];
