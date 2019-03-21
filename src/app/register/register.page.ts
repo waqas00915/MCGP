@@ -9,7 +9,7 @@ import { Validators } from '@angular/forms';
     styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
-    user: any = { name: '', email: '', pass: '', number: '', gender: '', img: '' }
+    user: any = { name: '', email: '', pass: '', number: '', gender: '', img: '', role: 'patient' };
     constructor(public navcontroller: NavController, private api: ApiService) { }
 
     ngOnInit() {
@@ -18,6 +18,6 @@ export class RegisterPage implements OnInit {
         this.navcontroller.back();
     }
     Register() {
-        this.api.register(this.user).then()
+        this.api.register(this.user).then();
     }
 }

@@ -8,26 +8,26 @@ import { ApiService } from '../api.service';
     styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-    user: any = '';
-    pass: any = '';
+    user: any = 'h@h.com';
+    pass: any = 'hassan';
     doctor: any = false;
     constructor(
         private alert: AlertController,
-        private load: LoadingController,
         private api: ApiService, private navcontroller: NavController) { }
 
     ngOnInit() {
     }
     Home() {
-        this.load.create({ message: 'Signing In...' }).then(load => {
-            load.present();
-            this.api.login(this.user, this.pass, this.doctor).then(data => {
+        this.api.login(this.user, this.pass).then(data => {
+            if (data === 'patient') {
                 this.navcontroller.navigateRoot('tabs');
-                load.dismiss();
-            }).catch(err => {
-                this.alert.create({ header: 'Failed', message: err }).then(a => a.present());
-                load.dismiss();
-            });
+            } else if (data === 'doctor') {
+                this.navcontroller.navigateRoot('tabs');
+            } else {
+                this.navcontroller.navigateRoot('tabs');
+            }
+        }).catch(err => {
+            this.alert.create({ header: 'Failed', message: err }).then(a => a.present());
         });
     }
     SignupPage() {

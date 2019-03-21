@@ -11,13 +11,15 @@
 @import '~@ionic/angular/css/flex-utils.css';
 @import "~animate.css";
 
-ion-toolbar{
+ion-toolbar {
     --background: #1b1b9e;
     color: white;
 }
-ion-content{
+
+ion-content {
     --background: white;
 }
-*{
+
+* {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }

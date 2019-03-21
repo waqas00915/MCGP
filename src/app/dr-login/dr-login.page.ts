@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
-import { AdminPage } from '../admin/admin.page';
+import { NavController } from '@ionic/angular';
 
 @Component({
     selector: 'app-dr-login',
@@ -9,14 +8,11 @@ import { AdminPage } from '../admin/admin.page';
 })
 export class DrLoginPage implements OnInit {
 
-    constructor(public modalcontroller: ModalController) { }
+    constructor(public navcontroller:NavController) { }
 
     ngOnInit() {
     }
-    async adminLogin() {
-        const modal = await this.modalcontroller.create({
-            component: AdminPage,
-        });
-        modal.present();
+    BacktoLogin(){
+        this.navcontroller.back();
     }
 }
