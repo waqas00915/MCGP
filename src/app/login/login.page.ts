@@ -33,4 +33,7 @@ export class LoginPage implements OnInit {
     SignupPage() {
         this.navcontroller.navigateForward('register');
     }
+    DrLoginPage() {
+        this.navcontroller.navigateForward('dr-login');
+    }
 }

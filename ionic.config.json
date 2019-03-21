@@ -1,7 +1,5 @@
 {
   "name": "jojo",
-  "integrations": {
-    "cordova": {}
-  },
+  "integrations": {},
   "type": "angular"
 }
