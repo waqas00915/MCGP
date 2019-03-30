@@ -8,18 +8,36 @@
 
 <ion-content padding>
     <!-- <h2 class="animated fadeIn delay-1s" style="margin: 0" text-center>Choose your Category</h2> -->
-    <ion-grid *ngIf='docs.length > 0'>
-        <ion-row>
-            <ion-col *ngFor='let item of docs' (click)='showDr(item.name)' size="12" size-md='6'>
-                <ion-card>
-                    <ion-item>
-                        <ion-avatar item-start>
-                            <img [src]="item.img">
-                        </ion-avatar>
-                        <h2>{{item.name}}</h2>
-                    </ion-item>
-                </ion-card>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
+    <div class="segment-container" padding>
+        <ion-segment (ionChange)="segmentChanged($event)">
+            <ion-segment-button checked value="seg1">
+                <h6>New Appointment</h6>
+            </ion-segment-button>
+            <ion-segment-button value="seg2">
+                <h6>My Appointments</h6>
+            </ion-segment-button>
+        </ion-segment>
+    </div>
+    <div [ngSwitch]="section" padding>
+        <div *ngSwitchCase="'seg1'">
+            <ion-grid *ngIf='docs.length > 0'>
+                <ion-row>
+                    <ion-col *ngFor='let item of docs' (click)='showDr(item.name)' size="12" size-md='6'>
+                        <ion-card>
+                            <ion-item>
+                                <ion-avatar item-start>
+                                    <img [src]="item.img">
+                                </ion-avatar>
+                                <h2>{{item.name}}</h2>
+                            </ion-item>
+                        </ion-card>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </div>
+
+        <div *ngSwitchCase="'seg2'">
+
+        </div>
+    </div>
 </ion-content>

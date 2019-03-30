@@ -6,18 +6,20 @@ import { LoadingController, AlertController } from '@ionic/angular';
     providedIn: 'root'
 })
 export class ApiService {
+    approved: any;
+    rejected: any;
+    doctorList: any = [];
+    drIndex: any;
+    user: any;
+    incoming: any = [];
 
     constructor(
         public load: LoadingController,
         public alert: AlertController
     ) { }
-    doctorList: any = [];
-    drIndex: any;
-
     getDr() {
         return this.doctorList[this.drIndex];
     }
-
     login(user, pass) {
         return new Promise((resolve, reject) => {
             this.load.create({ message: 'Signing In...', spinner: 'crescent' }).then(load => {
@@ -27,9 +29,12 @@ export class ApiService {
                     load.forceUpdate();
                     firestore().collection('users').doc(user).get().then(d => {
                         const role = d.data().role;
+                        console.log(d.data());
                         if (role === 'doctor') {
+                            this.user = d.data();
                             resolve('doctor');
                         } else if (role === 'patient') {
+                            this.user = d.data();
                             resolve('patient');
                         } else {
                             resolve('admin');
@@ -96,11 +101,239 @@ export class ApiService {
     getAvailableSlots(date) {
         return new Promise((resolve, reject) => {
             console.log('we are here');
-            firestore().collection('users/' + this.getDr().dr.email + '/bookings').doc(date)
+            const send = [];
+            firestore().collection('users/' + this.getDr().dr.email + '/pending').doc(date)
                 .get().then(data => {
-                    const temp: any = data.data();
-                    resolve(temp);
+                    send.push(data.data());
+                    console.log('we are here 2', send);
+                    firestore().collection('users/' + this.getDr().dr.email + '/approved').doc(date)
+                        .get().then(data2 => {
+                            send.push(data2.data());
+                            resolve(send);
+                        }).catch(err => console.log(err));
                 }).catch(err => console.log(err));
         });
+    }
+
+    makeAppointment(date, time) {
+        return new Promise((resolve, reject) => {
+            firestore().collection('users/' + this.getDr().dr.email + '/pending').doc(date).update
+                ({
+                    [time]: {
+                        remarks: '',
+                        user: firestore().doc('/users/' + this.user.email),
+                        time: time,
+                        name: this.user.name
+                    }
+                }).then(res => {
+                    console.log(res);
+                }).catch(err => {
+                    console.log('aeradadss');
+
+                    const t = '' + err;
+                    console.log(t);
+                    if (t.startsWith('FirebaseError: [code=not-found]: No document to update')) {
+                        firestore().collection('users/' + this.getDr().dr.email + '/pending').doc(date).set
+                            ({
+                                [time]: {
+                                    remarks: '',
+                                    user: firestore().doc('/users/' + this.user.email),
+                                    time: time,
+                                    name: this.user.name
+                                }
+                            }).then(res => {
+                                console.log(res);
+                            }).catch(erer => {
+                                console.log(erer);
+                            });
+                    }
+                });
+
+            firestore().collection('users/' + this.user.email + '/bookings').doc(date).update
+                ({
+                    [time]: {
+                        remarks: '',
+                        user: firestore().doc('/users/' + this.getDr().dr.email),
+                        time: time,
+                        name: this.getDr().dr.name
+                    }
+                }).then(res => {
+                    console.log(res);
+                }).catch(err => {
+                    console.log('aeradadss');
+
+                    const t = '' + err;
+                    console.log(t);
+                    if (t.startsWith('FirebaseError: [code=not-found]: No document to update')) {
+                        firestore().collection('users/' + this.user.email + '/bookings').doc(date).set
+                            ({
+                                [time]: {
+                                    remarks: '',
+                                    user: firestore().doc('/users/' + this.getDr().dr.email),
+                                    time: time,
+                                    name: this.getDr().dr.name
+                                }
+                            }).then(res => {
+                                console.log(res);
+                            }).catch(erer => {
+                                console.log(erer);
+                            });
+                    }
+                });
+        });
+    }
+
+    acceptAppointment(date, time) {
+        return new Promise((resolve, reject) => {
+            firestore().collection('users/' + this.user.email + '/pending').doc(date).update
+                ({ [time]: firestore.FieldValue.delete() }).then(res => {
+                    console.log(res);
+                    firestore().collection('users/' + this.user.email + '/approved').doc(date).update
+                        ({
+                            [time]: {
+                                remarks: '',
+                                user: firestore().doc('/users/' + this.user.email),
+                                time: time,
+                                name: this.user.name
+                            }
+                        }).then(res => {
+                            console.log(res);
+                        }).catch(err => {
+                            const t = '' + err;
+                            console.log(t);
+                            if (t.startsWith('FirebaseError: [code=not-found]: No document to update')) {
+                                firestore().collection('users/' + this.user.email + '/approved').doc(date).set
+                                    ({
+                                        [time]: {
+                                            remarks: '',
+                                            user: firestore().doc('/users/' + this.user.email),
+                                            time: time,
+                                            name: this.user.name
+                                        }
+                                    }).then(res => {
+                                        console.log(res);
+                                    }).catch(erer => {
+                                        console.log(erer);
+                                    });
+                            }
+                        });
+                }).catch(err => {
+                    console.log('ye wala idher', err);
+
+                });
+        });
+    }
+
+    rejectAppointment(date, time) {
+        return new Promise((resolve, reject) => {
+            firestore().collection('users/' + this.user.email + '/pending').doc(date).update
+                ({ [time]: firestore.FieldValue.delete() }).then(res => {
+                    console.log(res);
+                    firestore().collection('users/' + this.user.email + '/rejected').doc(date).update
+                        ({
+                            [time]: {
+                                remarks: '',
+                                user: firestore().doc('/users/' + this.user.email),
+                                time: time,
+                                name: this.user.name
+                            }
+                        }).then(res => {
+                            console.log(res);
+                        }).catch(err => {
+                            const t = '' + err;
+                            console.log(t);
+                            if (t.startsWith('FirebaseError: [code=not-found]: No document to update')) {
+                                firestore().collection('users/' + this.user.email + '/rejected').doc(date).set
+                                    ({
+                                        [time]: {
+                                            remarks: '',
+                                            user: firestore().doc('/users/' + this.user.email),
+                                            time: time,
+                                            name: this.user.name
+                                        }
+                                    }).then(res => {
+                                        console.log(res);
+                                    }).catch(erer => {
+                                        console.log(erer);
+                                    });
+                            }
+                        });
+                }).catch(err => {
+                    console.log('ye wala idher', err);
+
+                });
+        });
+    }
+    incomingAppointments() {
+        return new Promise((resolve, reject) => {
+            firestore().collection('users/' + this.user.email + '/pending').get().then(data => {
+                console.log(data.docs);
+                let count = 0;
+                let index = 0;
+                for (const key in data.docs) {
+                    if (data.docs.hasOwnProperty(key)) {
+                        const element = data.docs[key];
+                        this.incoming.push({
+                            id: element.id,
+                            key: Object.keys(element.data()),
+                            data: element.data()
+                        });
+                        count += this.incoming[index++].key.length;
+                    }
+                }
+                console.log(count);
+                resolve(count);
+            });
+        });
+    }
+
+    approvedAppointments() {
+        return new Promise((resolve, reject) => {
+            firestore().collection('users/' + this.user.email + '/pending').get().then(data => {
+                console.log(data.docs);
+                let count = 0;
+                let index = 0;
+                for (const key in data.docs) {
+                    if (data.docs.hasOwnProperty(key)) {
+                        const element = data.docs[key];
+                        this.approved.push({
+                            id: element.id,
+                            key: Object.keys(element.data()),
+                            data: element.data()
+                        });
+                        count += this.approved[index++].key.length;
+                    }
+                }
+                console.log(count);
+                resolve(count);
+            });
+        });
+    }
+
+    rejectedAppointments() {
+        return new Promise((resolve, reject) => {
+            firestore().collection('users/' + this.user.email + '/pending').get().then(data => {
+                console.log(data.docs);
+                let count = 0;
+                let index = 0;
+                for (const key in data.docs) {
+                    if (data.docs.hasOwnProperty(key)) {
+                        const element = data.docs[key];
+                        this.rejected.push({
+                            id: element.id,
+                            key: Object.keys(element.data()),
+                            data: element.data()
+                        });
+                        count += this.rejected[index++].key.length;
+                    }
+                }
+                console.log(count);
+                resolve(count);
+            });
+        });
+    }
+
+    myAppointments() {
+
     }
 }

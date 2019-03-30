@@ -11,7 +11,7 @@ import { AppComponent } from './app.component';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule, AngularFirestore } from 'angularfire2/firestore';
-
+import { HttpClientModule } from '@angular/common/http';
 
 const config = {
     apiKey: 'AIzaSyBQy_ac_ipYtbJY73TW7Wfhr6A4Fj_7UIs',
@@ -24,7 +24,7 @@ const config = {
 @NgModule({
     declarations: [AppComponent],
     entryComponents: [],
-    imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
+    imports: [BrowserModule, HttpClientModule, IonicModule.forRoot(), AppRoutingModule,
         AngularFireModule.initializeApp(config),
         AngularFirestoreModule],
     providers: [

@@ -9,36 +9,16 @@ import { ApiService } from '../api.service';
 })
 export class HomePage implements OnInit {
     docs: any = [];
-    // doctors: any = [{
-    //     name: 'Dr.Khurram',
-    //     specialty: 'Cardiologist',
-    //     exp: '+12 Years Experience',
-    //     img: '1',
-    // },
-    // {
-    //     name: 'Dr.Saad',
-    //     specialty: 'Neurologist',
-    //     exp: '+13 Years Experience',
-    //     img: '2',
-    // },
-    // {
-    //     name: 'Dr.Abdullah',
-    //     specialty: 'Radiologist',
-    //     exp: '+14 Years Experience',
-    //     img: '3',
-    // },
-    // {
-    //     name: 'Dr.AnthraxXx',
-    //     specialty: 'Radiologist',
-    //     exp: '+15 Years Experience',
-    //     img: '4',
-    // }];
+    section: any;
+
     constructor(private navecontroller: NavController, private api: ApiService) { }
     ngOnInit(): void {
         this.api.getAllSpecialities().then(data => {
             this.docs = data;
             console.log(this.docs);
         });
+
+        
     }
     showDr(name) {
         this.api.load.create({ message: 'Getting all ' + name + ' Doctors...' }).then(l => {
@@ -47,7 +27,11 @@ export class HomePage implements OnInit {
                 this.navecontroller.navigateForward('dr-list');
                 l.dismiss();
             });
-        })
+        });
     }
+    segmentChanged(ev: any) {
+        this.section = ev.detail.value;
+    }
+
 }
 

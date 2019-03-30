@@ -32,15 +32,17 @@ export class ProfilePage implements OnInit {
         this.api.load.create({ message: 'Getting Available Slots for ' + this.date }).then(l => {
             l.present();
             console.log(moment(day, 'MMM Do').format('MMMM Do YYYY'));
-            this.api.getAvailableSlots(moment(day, 'MMM Do').format('MMMM Do YYYY')).then(data => {
-                console.log(data);
-                for (const key in data) {
-                    if (data.hasOwnProperty(key)) {
-                        // tslint:disable-next-line: arrow-return-shorthand
-                        const index = this.days[i].times.findIndex(time => { return time.time === key; });
-                        this.days[i].times[index].status = false;
+            this.api.getAvailableSlots(moment(day, 'MMM Do').format('MMMM Do YYYY')).then((data: any) => {
+                data.forEach(item => {
+                    for (const key in item) {
+                        if (item.hasOwnProperty(key)) {
+                            console.log('loop me');
+                            // tslint:disable-next-line: arrow-return-shorthand
+                            const index = this.days[i].times.findIndex(time => { return time.time === key; });
+                            this.days[i].times[index].status = false;
+                        }
                     }
-                }
+                });
                 l.dismiss();
             });
         });
@@ -67,7 +69,7 @@ export class ProfilePage implements OnInit {
             this.api.alert.create({
                 header: 'Confirm Booking for ' + time + '?', buttons: [{ text: 'Cancel', role: 'cancel' }, {
                     text: 'Yes', handler: (data) => {
-
+                        this.api.makeAppointment(moment(this.date, 'MMM Do').format('MMMM Do YYYY'), time);
                     }
                 }]
             }).then(a => {
